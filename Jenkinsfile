@@ -1,14 +1,16 @@
 pipeline {
     agent any
     environment {
-        // Use PATH+EXTRA to append to PATH properly
-        PATH = "/usr/bin:/bin:/opt/homebrew/bin"
+
+        GIT_BRANCH = 'main'
+        REPOSITORY_URL = 'https://github.com/dheerajguttedar/Amazon-Jenkins'
     }
     stages {
 
         stage('pull scm git ') {
             steps {
-                git branch: 'main', url: 'https://github.com/dheerajguttedar/Amazon-Jenkins'
+               git branch: "${GIT_BRANCH}"
+                    url: "${REPOSITORY_URL}"
             }
         }
         stage('compile ') {
