@@ -9,7 +9,7 @@ pipeline {
 
         stage('pull scm git ') {
             steps {
-               git branch: "${GIT_BRANCH}"
+               git branch: "${GIT_BRANCH}",
                     url: "${REPOSITORY_URL}"
             }
         }
