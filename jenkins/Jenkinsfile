@@ -13,7 +13,7 @@ pipeline {
                     url: "${REPOSITORY_URL}"
             }
         }
-        stage('compile stage') 
+        stage('compile stage 1') 
             steps {
                 sh 'mvn compile'
             }
