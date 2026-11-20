@@ -1,44 +1,42 @@
+
 pipeline {
     agent any
-    environment {
 
+    environment {
         GIT_BRANCH = 'main'
-        REPOSITORY_URL = 'https://github.com/dheerajguttedar/Amazon-Jenkins'
+        REPOSITORY_URL = 'https://github.com/dheerajguttedar/Amazon-Jenkins.git'
     }
+
     stages {
 
-        stage('pull scm git ') {
+        stage('Pull SCM Git') {
             steps {
-               git branch: "${GIT_BRANCH}",
+                git branch: "${GIT_BRANCH}",
                     url: "${REPOSITORY_URL}"
             }
         }
-        stage('compile stage 1') 
+
+        stage('Compile') {
             steps {
                 sh 'mvn compile'
             }
         }
 
-        stage('build') {
+        stage('Build') {
             steps {
-                 sh 'mvn clean install'
+                sh 'mvn clean install'
             }
         }
-
-        
     }
 
-  post{
+    post {
+        success {
+            echo 'Build success'
+        }
 
-  success{
-     echo 'Build success '
-  }
-    
-  failure{
-       echo 'Failure in the build'
-   }
-
-  }
-
-
+        failure {
+            echo 'Failure in the build'
+        }
+    }
+}
 
